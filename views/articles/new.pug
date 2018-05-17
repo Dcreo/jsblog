@@ -1,0 +1,23 @@
+extends ../layout
+
+block content
+  h1= title
+
+  form(action="/articles", method="post")
+    p
+      label Название статьи
+        br
+      input(type="text" name="article[title]")
+
+    p
+      label Краткое описание статьи
+        br
+      textarea(name="article[description]")
+
+    p
+      label Текст статьи
+        br
+      textarea(name="article[content]")
+
+    p
+      input(type="submit" value="Добавить статью")
