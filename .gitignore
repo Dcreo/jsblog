@@ -1,5 +1,5 @@
 node_modules
 *.swn
 *.swp
-db
-config
+db/db.js
+config/config.json
