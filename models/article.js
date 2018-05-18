@@ -1,10 +1,24 @@
 const connection = require('../db/db');
+const moment = require('moment');
 
 class Article {
   constructor(obj) {
+    let date = moment().format("YYYY-MM-DD HH:mm:ss");
+
+    this.setCreatedAt(date);
+    this.setUpdatedAt(date);
+
     for (var key in obj) {
       this[key] = obj[key];
     }
+  }
+
+  setCreatedAt(date) {
+    this.createdAt = date;
+  }
+
+  setUpdatedAt(date) {
+    this.updatedAt = date;
   }
 
   static all(cb) {
