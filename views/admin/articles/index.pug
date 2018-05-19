@@ -1,4 +1,4 @@
-extends ../layout
+extends ../../layout
 
 block content
   h1= title
@@ -6,3 +6,4 @@ block content
 
   each article in articles
     h2= article.title
+    small= article.createdAt

@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const Article = require('../models/article');
+const Article = require('../../models/article');
 
 router.get('/', (req, res, next) => {
   let page = req.query.page;
@@ -8,12 +8,12 @@ router.get('/', (req, res, next) => {
   Article.all({ order: { field: 'createdAt', direction: 'DESC' }, pagination: { page: page, perPage: 5 }}, (err, articles) => {
     if (err) next(err);
 
-    res.render('articles/index', { title: 'Статьи', articles: articles });
+    res.render('admin/articles/index', { title: 'Статьи', articles: articles });
   });
 });
 
 router.get('/new', (req, res) => {
-  res.render('articles/new', { title: 'Добавить статью' });
+  res.render('admin/articles/new', { title: 'Добавить статью' });
 });
 
 router.post('/', (req, res, next) => {
@@ -21,8 +21,10 @@ router.post('/', (req, res, next) => {
   article.save((err) => {
     if (err) next(err);
 
-    res.redirect('/articles');
+    res.redirect('/admin/articles');
   });
 });
+
+console.log(router.stack[0].route);
 
 module.exports = router;

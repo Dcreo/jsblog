@@ -26,8 +26,6 @@ class Article {
   static all(options = {}, cb) {
     let sql = queryBuilder.all(options);
 
-    console.log(sql);
-
     connection.query(sql, Article.resultCallback(cb));
   }
 
