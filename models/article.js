@@ -1,5 +1,7 @@
 const connection = require('../db/db');
 const moment = require('moment');
+const QueryBuilder = require('../lib/query-builder');
+const queryBuilder = new QueryBuilder('Articles');
 
 class Article {
   constructor(obj) {
@@ -21,20 +23,24 @@ class Article {
     this.updatedAt = date;
   }
 
-  static all(cb) {
-    connection.query('SELECT * FROM Articles', (err, articles) => {
-      if (err) return cb(err);
+  static all(options = {}, cb) {
+    let sql = queryBuilder.all(options);
 
-      cb(null, articles);
-    });
+    connection.query(sql, Article.resultCallback(cb));
   }
 
   save(cb) {
-    connection.query('INSERT INTO Articles SET ?', this, (err) => {
+    let sql = queryBuilder.save();
+
+    connection.query(sql, this, Article.resultCallback(cb));
+  }
+
+  static resultCallback(cb) {
+    return (err, result) => {
       if (err) return cb(err);
 
-      cb(null);
-    });
+      cb(null, result);
+    }
   }
 }
 
