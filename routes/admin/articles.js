@@ -5,7 +5,7 @@ const createError = require('http-errors');
 
 router.get('/', (req, res, next) => {
   let page = res.locals.page = req.query.page;
-  let perPage = res.locals.perPage = 1;
+  let perPage = res.locals.perPage = 2;
 
   Article.all({ order:
                  { field: 'createdAt',
