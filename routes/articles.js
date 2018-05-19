@@ -3,7 +3,9 @@ const router = express.Router();
 const Article = require('../models/article');
 
 router.get('/', (req, res, next) => {
-  Article.all({ order: { field: 'createdAt', direction: 'DESC' }, pagination: { page: 2, perPage: 2 }}, (err, articles) => {
+  let page = req.query.page;
+
+  Article.all({ order: { field: 'createdAt', direction: 'DESC' }, pagination: { page: page, perPage: 5 }}, (err, articles) => {
     if (err) next(err);
 
     res.render('articles/index', { title: 'Статьи', articles: articles });
