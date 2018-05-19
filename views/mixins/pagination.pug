@@ -1,15 +1,22 @@
 mixin pagination(collection)
   p- pagesCount = Math.floor(collection[0].collectionCount / perPage) - 1
-  p= pagesCount
+  -page = parseInt(page) || 0
 
-
-  if page > 1
-    -prevPage = parseInt(page) - 1
+  if page > 2
+    -prevPage = page - 1
     a(href="?page=" + prevPage) назад
-  = page
 
-  if page < pagesCount
-    -nextPage = parseInt(page) + 1
+  if page == 2
+    a(href="" onclick='event.preventDefault(); window.location.href = window.location.href.split("?")[0]') назад
+
+  if page != 0
+    = page
+
+  if page >= 2 && page < pagesCount
+    -nextPage = page + 1
     a(href="?page=" + nextPage) вперед
+
+  if page == 0
+    a(href="?page=" + 2) вперед
 
 
