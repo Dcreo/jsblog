@@ -1,4 +1,5 @@
 node_modules
 *.swn
 *.swp
+*.swo
 .env

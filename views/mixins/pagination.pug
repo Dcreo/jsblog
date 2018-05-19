@@ -1,0 +1,15 @@
+mixin pagination(collection)
+  p- pagesCount = Math.floor(collection[0].collectionCount / perPage) - 1
+  p= pagesCount
+
+
+  if page > 1
+    -prevPage = parseInt(page) - 1
+    a(href="?page=" + prevPage) назад
+  = page
+
+  if page < pagesCount
+    -nextPage = parseInt(page) + 1
+    a(href="?page=" + nextPage) вперед
+
+

@@ -7,3 +7,6 @@ block content
   each article in articles
     h2= article.title
     small= article.createdAt
+
+  include ../../mixins/pagination
+  +pagination(articles)

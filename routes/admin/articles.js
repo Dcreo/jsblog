@@ -1,15 +1,27 @@
 const express = require('express');
 const router = express.Router();
 const Article = require('../../models/article');
+const createError = require('http-errors');
 
 router.get('/', (req, res, next) => {
-  let page = req.query.page;
+  let page = res.locals.page = req.query.page;
+  let perPage = res.locals.perPage = 2;
 
-  Article.all({ order: { field: 'createdAt', direction: 'DESC' }, pagination: { page: page, perPage: 5 }}, (err, articles) => {
-    if (err) next(err);
+  Article.all({ order:
+                 { field: 'createdAt',
+                   direction: 'DESC' },
+                pagination:
+                  { page: page,
+                    perPage: perPage }},
+    (err, articles) => {
+      if (err) next(err);
 
-    res.render('admin/articles/index', { title: 'Статьи', articles: articles });
-  });
+      if (articles.length) {
+        res.render('admin/articles/index', { title: 'Статьи', articles: articles });
+      } else {
+        next(createError(404));
+      }
+    });
 });
 
 router.get('/new', (req, res) => {
@@ -24,7 +36,5 @@ router.post('/', (req, res, next) => {
     res.redirect('/admin/articles');
   });
 });
-
-console.log(router.stack[0].route);
 
 module.exports = router;
