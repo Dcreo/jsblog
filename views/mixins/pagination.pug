@@ -2,21 +2,22 @@ mixin pagination(collection)
   p- pagesCount = parseInt(collection[0].collectionCount / perPage)
   -page = parseInt(page) || 0
 
-  if page > 2
-    -prevPage = page - 1
-    a(href="" onclick='event.preventDefault(); window.location.href = window.location.href.split("?")[0]') <<
-    a(href="?page=" + prevPage) назад
+  if pagesCount > 0
+    if page > 2
+      -prevPage = page - 1
+      a(href="" onclick='event.preventDefault(); window.location.href = window.location.href.split("?")[0]') <<
+      a(href="?page=" + prevPage) назад
 
-  if page == 2
-    a(href="" onclick='event.preventDefault(); window.location.href = window.location.href.split("?")[0]') назад
+    if page == 2
+      a(href="" onclick='event.preventDefault(); window.location.href = window.location.href.split("?")[0]') назад
 
-  if page != 0
-    = page
+    if page != 0
+      = page
 
-  if page >= 2 && page < pagesCount
-    -nextPage = page + 1
-    a(href="?page=" + nextPage) вперед
-    a(href="?page=" + pagesCount) >>
+    if page >= 2 && page < pagesCount
+      -nextPage = page + 1
+      a(href="?page=" + nextPage) вперед
+      a(href="?page=" + pagesCount) >>
 
-  if page == 0
-    a(href="?page=" + 2) вперед
+    if page == 0
+      a(href="?page=" + 2) вперед
