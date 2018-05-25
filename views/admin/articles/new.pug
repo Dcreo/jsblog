@@ -1,23 +1,20 @@
-extends ../../layout
+extends ../../layouts/admin
 
 block content
   h1= title
 
   form(action="/admin/articles", method="post")
-    p
+    div(class="form-group")
       label Название статьи
-        br
-      input(type="text" name="article[title]")
+      input(type="text" name="article[title]" class="form-control")
 
-    p
+    div(class="form-group")
       label Краткое описание статьи
-        br
-      textarea(name="article[description]")
+      textarea(name="article[description]" class="form-control")
 
-    p
+    div(class="form-group")
       label Текст статьи
-        br
-      textarea(name="article[content]")
+      textarea(name="article[content]" class="form-control")
 
     p
-      input(type="submit" value="Добавить статью")
+      input(type="submit" value="Добавить статью" class="btn btn-primary")
