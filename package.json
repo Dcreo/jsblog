@@ -3,21 +3,34 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node ./bin/www",
+    "build": "./node_modules/.bin/webpack-cli --watch"
   },
   "dependencies": {
     "bcrypt": "^2.0.1",
+    "bootstrap-sass": "^3.3.7",
     "cookie-parser": "~1.4.3",
+    "css-loader": "^0.28.11",
     "debug": "~2.6.9",
     "dotenv": "^5.0.1",
     "express": "~4.16.0",
     "express-session": "^1.15.6",
+    "file-loader": "^1.1.11",
     "http-errors": "~1.6.2",
+    "jquery": "^3.3.1",
     "moment": "^2.22.1",
     "morgan": "~1.9.0",
     "mysql2": "^1.5.3",
+    "node-sass": "^4.9.0",
     "pug": "2.0.0-beta11",
+    "sass-loader": "^7.0.1",
     "sequelize": "^4.37.7",
-    "sequelize-cli": "^4.0.0"
+    "sequelize-cli": "^4.0.0",
+    "style-loader": "^0.21.0"
+  },
+  "devDependencies": {
+    "extract-text-webpack-plugin": "^4.0.0-beta.0",
+    "webpack": "^4.8.3",
+    "webpack-cli": "^2.1.4"
   }
 }
