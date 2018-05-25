@@ -45,7 +45,7 @@ class User {
       bcrypt.compare(this.password, user[0].password, (err, res) => {
         if (err) return cb(err);
 
-        cb(null, user);
+        cb(null, user[0]);
       });
     });
   }

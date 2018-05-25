@@ -3,6 +3,9 @@ extends ../../layout
 block content
   h1= title
 
+  if currentUser
+    p= currentUser.email
+
   each article in articles
     h2= article.title
     small= article.createdAt
