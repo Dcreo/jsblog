@@ -1,5 +1,5 @@
 mixin pagination(collection)
-  p- pagesCount = parseInt(collection[0].collectionCount / perPage)
+  p- pagesCount = parseInt(Math.ceil(collection[0].collectionCount / perPage))
   -page = parseInt(page) || 0
 
   if pagesCount > 0
