@@ -3,7 +3,7 @@ mixin pagination(collection)
     p- pagesCount = parseInt(Math.ceil(collection[0].collectionCount / perPage))
     -page = parseInt(page) || 0
 
-    if pagesCount > 0
+    if pagesCount > 1
       if page > 2
         -prevPage = page - 1
         a(href="" onclick='event.preventDefault(); window.location.href = window.location.href.split("?")[0]') <<
