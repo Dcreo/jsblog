@@ -16,10 +16,10 @@ router.get('/', (req, res, next) => {
     (err, articles) => {
       if (err) next(err);
 
-      if (articles.length) {
-        res.render('admin/articles/index', { title: 'Статьи', articles: articles });
-      } else {
+      if (page && !articles.length) {
         next(createError(404));
+      } else {
+        res.render('admin/articles/index', { title: 'Статьи', articles: articles });
       }
     });
 });
