@@ -1,0 +1,18 @@
+extends ../layout
+
+block content
+  h1= title
+
+  form(action="/sessions", method="post")
+    p
+      label email
+        br
+      input(type="text" name="user[email]")
+
+    p
+      label Пароль
+        br
+      input(type="password" name="user[password]")
+
+    p
+      input(type="submit" value="Войти")

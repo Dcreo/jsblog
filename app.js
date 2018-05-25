@@ -8,6 +8,7 @@ var app = express();
 var indexRouter = require('./routes/index');
 var adminUsersRouter = require('./routes/admin/users');
 var adminArticlesRouter = require('./routes/admin/articles');
+var adminSessionsRouter = require('./routes/admin/sessions');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -20,8 +21,9 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/admin/users', adminUsersRouter);
+app.use('/users', adminUsersRouter);
 app.use('/admin/articles', adminArticlesRouter);
+app.use('/sessions', adminSessionsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
